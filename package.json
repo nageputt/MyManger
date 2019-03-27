@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.2",
+    "@material-ui/icons": "^3.0.2",
+    "@material/react-drawer": "^0.11.0",
+    "@material/react-list": "^0.11.0",
+    "@material/react-material-icon": "^0.11.0",
+    "@material/react-top-app-bar": "^0.11.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-scripts": "2.1.8"
