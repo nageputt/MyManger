@@ -15,6 +15,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Edit from '@material-ui/icons/Edit';
 import Delete from '@material-ui/icons/Delete';
 import Visibility from '@material-ui/icons/Visibility';
+import Grid from '@material-ui/core/Grid'
 
 
  class CardGrid extends Component {
@@ -60,7 +61,9 @@ import Visibility from '@material-ui/icons/Visibility';
   render() {
     return (
       <div className = "card-grid-class">
+         <Grid container spacing={24} style={{padding: 23}}>
            {this.state.cardData.map(data =>
+           <Grid item xs={12} sm={3} lg={4} xl={6}>
                    <Card className="card">
                    <CardHeader
                      avatar={ <Avatar aria-label="Recipe" className="name-class"> N </Avatar> }
@@ -95,7 +98,9 @@ import Visibility from '@material-ui/icons/Visibility';
                   <MenuItem onClick={this.itemSelect}> <IconButton aria-label="delete"> <Delete /> </IconButton>Delete</MenuItem>
                 </Menu>
                  </Card>
+                 </Grid>
                 )}
+                  </Grid>
       </div>
     )
   }

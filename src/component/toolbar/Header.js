@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Badge from '@material-ui/core/Badge';
+import { Link } from 'react-router-dom';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -106,11 +107,7 @@ class Header extends Component {
           [side]: open,
         });
       };
-      openNewDialog = () => {
-        this.setState({
-          openDialog:true
-        });
-      }
+      
     
      
     render() {
@@ -199,9 +196,11 @@ class Header extends Component {
             </Toolbar>
             </AppBar>
             <div className = "add-class">
-            <Fab className= 'add-button'color='secondary'  onClick={this.openNewDialog}>
+              <Link to ="/create">
+            <Fab className= 'add-button'color='secondary' >
                 <AddIcon />
              </Fab>
+             </Link>
              </div>
              <div className="sidemenu-class">
       <Drawer open={this.state.left} onClose={this.toggleDrawer('left', false)}>

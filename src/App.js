@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import Header from './component/toolbar/Header';
 import firebase from './component/dataBase/Firebase';
 import CardGrid from './component/dashBoard/CardGrid';
-import withFirebaseAuth from 'react-with-firebase-auth'
+import withFirebaseAuth from 'react-with-firebase-auth';
+import Searchbar from './component/dashBoard/Searchbar';
 import './App.css';
 
 class App extends Component {
@@ -42,36 +43,12 @@ class App extends Component {
         <Header/>
         <div className="container">
         <div className="panel panel-default">
-          {/* <div className="panel-heading">
-            <h3 className="panel-title">
-              BOARD LIST
-            </h3>
-          </div> */}
-          {/* <div className="panel-body">
-            <h4><Link to="/create">Add Board</Link></h4>
-            <table class="table table-stripe">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Author</th>
-                </tr>
-              </thead>
-              <tbody>
-                {this.state.boards.map(board =>
-                  <tr>
-                    <td><Link to={`/show/${board.key}`}>{board.title}</Link></td>
-                    <td><Link> {board.description}</Link></td>
-                    <td>{board.author}</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div> */}
+          <div className="search-bar">
+            <Searchbar/>
+          </div>
           <div className="card-grid">
           <CardGrid/>
           </div>
-          
         </div>
       </div>
       </div>

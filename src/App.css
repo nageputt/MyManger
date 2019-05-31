@@ -43,6 +43,13 @@
 .card-grid{
   width: 900px;
 }
-.card-grid-class{
-  width: 300px;
+.paper-class{
+  margin-top: 2%;
+  display: flex;
+  align-items:center;
+  width: 900px;
+}
+.save-button-class{
+  padding: 7px;
+  float: right;
 }

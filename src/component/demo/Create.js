@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import firebase from '../dataBase/Firebase';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import EmiCalculator from '../dashBoard/calculator/EmiCalculator';
 
 class Create extends Component {
 
@@ -18,6 +21,11 @@ class Create extends Component {
     const state = this.state
     state[e.target.name] = e.target.value;
     this.setState(state);
+  }
+  changeValue = name => event => {
+    this.setState({
+      [name]: event.target.value,
+    });
   }
 
   onSubmit = (e) => {
@@ -46,31 +54,29 @@ class Create extends Component {
     const { title, description, author } = this.state;
     return (
       <div className="container">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">
-              ADD BOARD
-            </h3>
-          </div>
-          <div className="panel-body">
-            <h4><Link to="/" className="btn btn-primary">Book List</Link></h4>
-            <form onSubmit={this.onSubmit}>
-              <div className="form-group">
-                <label for="title">Title:</label>
-                <input type="text" className="form-control" name="title" value={title} onChange={this.onChange} placeholder="Title" />
-              </div>
-              <div className="form-group">
-                <label for="description">Description:</label>
-                <textArea className="form-control" name="description" onChange={this.onChange} placeholder="Description" cols="80" rows="3">{description}</textArea>
-              </div>
-              <div className="form-group">
-                <label for="author">Author:</label>
-                <input type="text" className="form-control" name="author" value={author} onChange={this.onChange} placeholder="Author" />
-              </div>
-              <button type="submit" className="btn btn-success">Submit</button>
-            </form>
-          </div>
-        </div>
+        <EmiCalculator/>
+            <div>
+            <TextField  required  id="name" label="Full Name"  className = "name"   margin="normal"  onChange={this.changeValue('name')} />
+            </div>
+            <div>
+            <TextField  required  id="number" label="Mobile Number"  className = "number"   margin="normal"   type="number" onChange={this.changeValue('number')} />
+            </div>
+            <div>
+            <TextField  required  id="amount" label="amount"  className = "amount"   margin="normal"  onChange={this.changeValue('amount')} />
+            </div>
+            <div>
+            <TextField  required  id="interest" label="Rate of interest"  className = "interest"   margin="normal"  onChange={this.changeValue('interest')} />
+            </div>
+            <div> 
+            <TextField  required  id="duration" label="Duration"  className = "time"   margin="normal"  onChange={this.changeValue('time')} />
+            </div>
+            <div>
+              <Link to="/">
+            <Button variant="contained" className="cancel-button-class">Cancel</Button>
+            </Link>
+            <Button variant="contained" color="primary" className="save-button-class"> Save </Button>
+            </div>
+            
       </div>
     );
   }
