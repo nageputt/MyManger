@@ -9,9 +9,12 @@
     "@material/react-list": "^0.11.0",
     "@material/react-material-icon": "^0.11.0",
     "@material/react-top-app-bar": "^0.11.0",
+    "firebase": "^5.10.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "react-scripts": "2.1.8"
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "react-with-firebase-auth": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,5 +30,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "bootstrap": "^4.3.1"
+  }
 }

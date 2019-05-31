@@ -17,10 +17,15 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
+import Dialog from '@material-ui/core/Dialog';
 import '../../App.css';
 
 const drawerWidth = 240;
@@ -99,6 +104,13 @@ class PersistentDrawerLeft extends React.Component {
       });
   };
 
+  
+  clickAddButton = () => {
+    this.setState({
+       open: true
+       });
+  };
+
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
@@ -106,20 +118,7 @@ class PersistentDrawerLeft extends React.Component {
     return (
       <div className={classes.root}>
         <CssBaseline />
-        <AppBar position="fixed" className={classNames(classes.appBar, {[classes.appBarShift]: open,})} >
-          <Toolbar disableGutters={!open}>
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, open && classes.hide)}>
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" color="inherit" noWrap>
-              My Manager
-            </Typography>
-          </Toolbar>
-        </AppBar>
+
         <Drawer
           className={classes.drawer}
           variant="persistent"
@@ -173,10 +172,25 @@ class PersistentDrawerLeft extends React.Component {
            </Typography>
     
         
-        <Fab className= 'add-button'color='secondary'>
+        <Fab className= 'add-button'color='secondary'  onClick={this.clickAddButton}>
         <AddIcon />
         </Fab>
-       
+        <ConfirmationDialogRaw
+            classes={{
+              paper: classes.paper,
+            }}
+            open={this.state.open}
+            onClose={this.handleClose}
+            value={this.state.value}
+          />
+        <ConfirmationDialogRaw
+            classes={{
+              paper: classes.paper,
+            }}
+            open={this.state.open}
+            onClose={this.handleClose}
+            value={this.state.value}
+          />
         </main>
       </div>
     );
@@ -187,5 +201,51 @@ PersistentDrawerLeft.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
 };
+class ConfirmationDialogRaw extends React.Component {
+  constructor(props) {
+    super();
+    this.state = {
+      value: props.value,
+    };
+  }
+
+   
+  render() {
+    const { value, ...other } = this.props;
+
+    return (
+      <Dialog
+        disableBackdropClick
+        disableEscapeKeyDown
+        maxWidth="xs"
+        onEntering={this.handleEntering}
+        aria-labelledby="confirmation-dialog-title"
+        {...other}
+      >
+        <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
+        <DialogContent>
+          
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.handleCancel} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={this.handleOk} color="primary">
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  }
+}
+
+ConfirmationDialogRaw.propTypes = {
+  onClose: PropTypes.func,
+  value: PropTypes.string,
+};
+
+
+
+
 
 export default withStyles(styles, { withTheme: true })(PersistentDrawerLeft);

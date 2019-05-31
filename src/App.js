@@ -1,12 +1,79 @@
 import React, { Component } from 'react';
-import PersistanceDrawer from './component/toolbar/PersistentDrawerLeft';
+import { Link } from 'react-router-dom';
+import Header from './component/toolbar/Header';
+import firebase from './component/dataBase/Firebase';
+import CardGrid from './component/dashBoard/CardGrid';
+import withFirebaseAuth from 'react-with-firebase-auth'
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.ref = firebase.firestore().collection('boards');
+    this.unsubscribe = null;
+    this.state = {
+      boards: []
+    };
+  }
+  onCollectionUpdate = (querySnapshot) => {
+    const boards = [];
+    querySnapshot.forEach((doc) => {
+      const { title, description, author } = doc.data();
+      boards.push({
+        key: doc.id,
+        doc, // DocumentSnapshot
+        title,
+        description,
+        author,
+      });
+    });
+    this.setState({
+      boards
+   });
+  }
+
+  componentDidMount() {
+    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
+  }
+
   render() {
     return (
       <div className="App">
-        <PersistanceDrawer/>
+        <Header/>
+        <div className="container">
+        <div className="panel panel-default">
+          {/* <div className="panel-heading">
+            <h3 className="panel-title">
+              BOARD LIST
+            </h3>
+          </div> */}
+          {/* <div className="panel-body">
+            <h4><Link to="/create">Add Board</Link></h4>
+            <table class="table table-stripe">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Author</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.boards.map(board =>
+                  <tr>
+                    <td><Link to={`/show/${board.key}`}>{board.title}</Link></td>
+                    <td><Link> {board.description}</Link></td>
+                    <td>{board.author}</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div> */}
+          <div className="card-grid">
+          <CardGrid/>
+          </div>
+          
+        </div>
+      </div>
       </div>
     );
   }

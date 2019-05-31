@@ -24,8 +24,25 @@
   display: flex;
   width: 100%;
 }
-.add-button {
-  position: absolute;
+.add-class {
+  position: relative;
   top: 550px;
+  margin-right: 32px;
   float: right;
+}
+.user-icon-class{
+  margin-left: 79%;
+}
+.list-class{
+  width: 250px;
+}
+
+.toggle-back{
+  width: inherit;
+}
+.card-grid{
+  width: 900px;
+}
+.card-grid-class{
+  width: 300px;
 }
