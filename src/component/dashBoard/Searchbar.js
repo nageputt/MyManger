@@ -13,7 +13,7 @@ function Searchbar() {
         <IconButton className="Icon-class" aria-label="Search">
           <SearchIcon />
         </IconButton>
-        <InputBase className="input-class" fullWidth placeholder="Search with name or mobile number"/>
+        <InputBase className="input-class" fullWidth type = "search"placeholder="Search with name or mobile number"/>
       </Paper>
     );
   }
